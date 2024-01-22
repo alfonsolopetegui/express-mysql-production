@@ -8,14 +8,14 @@ class ProductsController {
     req.getConnection((err, conn) => {
       if (err) {
         console.error(err);
-        res.status(500).json({ error: "Error de conexión a la base de datos" });
+        res.status(500).json({ msg: "Error de conexión a la base de datos", error: err });
         return;
       }
 
       conn.query("SELECT * FROM products", (err, rows) => {
         if (err) {
           console.error(err);
-          res.status(500).json({ error: "Error al ejecutar la consulta" });
+          res.status(500).json({ msg: "Error al ejecutar la consulta", error: err });
           return;
         } else {
           console.log("Lectura realizada correctamente:", rows);
